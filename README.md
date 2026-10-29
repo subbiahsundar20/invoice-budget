@@ -1,59 +1,191 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Invoice and Budget Management System
 
-## About Laravel
+A web-based financial management application built with Laravel. It helps manage customers, suppliers, products, sales invoices, purchase invoices, budgets, expenses, and financial reports.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 1. Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Admin authentication and login
+- Dashboard with financial summaries and charts
+- Customer management (Create, Read, Update, Delete)
+- Supplier management
+- Product management
+- Sales invoice management
+- Purchase invoice management
+- Invoice status and outstanding dues tracking
+- Budget management
+- Expense management
+- Search and filtering
+- Financial reports and CSV export
+- Currency exchange rates using the Frankfurter API
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 2. Technology Stack
 
-## Learning Laravel
+- PHP 8.2+
+- Laravel 12
+- MySQL
+- Blade templates
+- Bootstrap
+- Composer
+- Node.js and npm for frontend assets, if required
+- Frankfurter API for currency exchange rates
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 3. Prerequisites
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Install the following software:
 
-## Laravel Sponsors
+1. PHP 8.2 or a compatible version
+2. Composer
+3. MySQL
+4. Git
+5. Node.js and npm, if required by the frontend build
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+On Windows, WAMP can be used to provide PHP and MySQL.
 
-### Premium Partners
+Verify the installations:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```bash
+php -v
+composer --version
+git --version
+node -v
+npm -v
+```
 
-## Contributing
+## 4. Clone the Repository
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Open a terminal and run:
 
-## Code of Conduct
+```bash
+git https://github.com/subbiahsundar20/invoice-budget
+cd invoice-budget
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 5. Install Dependencies
 
-## Security Vulnerabilities
+Install Laravel's PHP dependencies:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+composer install
+```
 
-## License
+If the project uses npm-managed frontend assets, install and build them:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+npm install
+npm run build
+```
+
+## 6. Configure the Environment
+
+Create a local environment configuration file.
+
+Windows Command Prompt:
+
+```cmd
+copy .env.example .env
+```
+
+PowerShell:
+
+```powershell
+Copy-Item .env.example .env
+```
+
+Generate the Laravel application key:
+
+```bash
+php artisan key:generate
+```
+
+Open `.env` and configure the application and database settings.
+
+Example configuration:
+
+```dotenv
+APP_NAME="Invoice and Budget Management System"
+APP_ENV=local
+APP_DEBUG=true
+APP_URL=http://127.0.0.1:8000
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=invoice_budget
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Adjust the username, and password according to your local MySQL installation.
+
+
+## 7. Create the Database
+
+1. Start Apache and MySQL using WAMP, if using WAMP.
+2. Open phpMyAdmin or your preferred MySQL client.
+3. Create a database named `invoice_budget`, or use the database name configured in `.env`.
+4. Confirm that the database credentials in `.env` match your local MySQL configuration.
+
+## 8. Run Database Migrations
+
+Run the migrations to create the application tables:
+
+```bash
+php artisan migrate
+```
+
+If Laravel asks to create the database, confirm only if you intend to use the configured database and have verified its name.
+
+## 9. Seed the Admin Account
+
+The project includes an admin seeder if the `AdminUserSeeder` class is present.
+
+Run:
+
+```bash
+php artisan db:seed --class=AdminUserSeeder
+```
+
+This executes the admin seeder and creates the initial admin account according to the seeder implementation.
+
+Before running this command, verify the seeder file at:
+
+`database/seeders/AdminUserSeeder.php`
+
+Check the initial admin email, password-generation logic, and whether the seeder can be run more than once safely.
+
+currently admin credentieals:
+username:admin@example.com
+password:Admin@12345
+
+Use the initial credentials supplied by the project owner or reviewer. If the seeder defines a default password, communicate it securely to the reviewer rather than publishing it in a public repository.
+
+## 10. Start the Application
+
+Run the Laravel development server:
+
+```bash
+php artisan serve
+```
+
+Open the URL shown in the terminal. The default URL is:
+
+http://127.0.0.1:8000
+
+Navigate to the application's login page and sign in using the admin account created by the seeder.
+
+## 11. Currency Exchange Rate API
+
+The dashboard uses the Frankfurter API to retrieve reference exchange rates.
+
+API endpoint:
+
+https://api.frankfurter.dev/v2/rates?base=USD&quotes=INR,EUR,GBP
+
+Internet access is required to retrieve exchange-rate data.
+
+The application caches currency data to reduce repeated API requests.
+
+If the API request fails because of SSL certificate verification on a local PHP installation, configure PHP/cURL with a valid CA certificate bundle. Do not disable SSL certificate verification.
+
+After changing the relevant PHP configuration, restart the affected PHP or web-server process if necessary.
