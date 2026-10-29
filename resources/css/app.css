@@ -1,0 +1,37 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    margin: 0;
+    background-color: #f4f6f9;
+    font-family: Arial, sans-serif;
+}
+
+a {
+    text-decoration: none;
+}
+
+.sidebar {
+    width: 240px;
+    min-height: 100vh;
+    flex-shrink: 0;
+}
+
+.sidebar a {
+    display: block;
+    color: #ffffff;
+    padding: 10px 12px;
+    margin-bottom: 5px;
+    border-radius: 6px;
+}
+
+.sidebar a:hover {
+    background-color: #343a40;
+}
+
+.dashboard-content {
+    min-width: 0;
+}
